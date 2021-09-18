@@ -1,0 +1,37 @@
+2021-09-18 14:43:21.391 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.0.Final
+2021-09-18 14:43:21.655 [background-preinit] WARN  o.s.h.converter.json.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-09-18 14:43:26.443 [main] WARN  org.springframework.boot.StartupInfoLogger - InetAddress.getLocalHost().getHostName() took 5014 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2021-09-18 14:43:31.493 [main] INFO  com.jiuyu.Application - Starting Application on MrchengdeMacBook-Pro.local with PID 13111 (/Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo/target/classes started by mr.cheng in /Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo)
+2021-09-18 14:43:31.503 [main] INFO  com.jiuyu.Application - No active profile set, falling back to default profiles: default
+2021-09-18 14:43:32.238 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-18 14:43:32.241 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-09-18 14:43:32.276 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+2021-09-18 14:43:33.091 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-09-18 14:43:33.157 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-09-18 14:43:33.160 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-09-18 14:43:33.160 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-09-18 14:43:33.244 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-09-18 14:43:33.245 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1684 ms
+2021-09-18 14:43:54.141 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'marriageEvidenceController': Unsatisfied dependency expressed through field 'marriageEvidenceService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'marriageEvidenceService': Unsatisfied dependency expressed through field 'client'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.fisco.bcos.sdk.client.Client' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2021-09-18 14:43:54.150 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2021-09-18 14:43:54.164 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-09-18 14:43:54.304 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field client in com.jiuyu.service.impl.MarriageEvidenceServiceImpl required a bean of type 'org.fisco.bcos.sdk.client.Client' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'org.fisco.bcos.sdk.client.Client' in your configuration.
+

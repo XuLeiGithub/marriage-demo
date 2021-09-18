@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jiuyu.dao.MarriageEvidenceDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.jiuyu.entity.MarriageEvidenceEntity" id="marriageEvidenceMap">
+        <result property="id" column="id"/>
+        <result property="evidenceKey" column="evidence_key"/>
+        <result property="evidenceValue" column="evidence_value"/>
+        <result property="needSigners" column="need_signers"/>
+        <result property="hasSigners" column="has_signers"/>
+        <result property="txId" column="tx_id"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="certificateNumber" column="certificate_number"/>
+    </resultMap>
+
+    <select id="queryByUserPublicAddress" parameterType="java.lang.String"
+            resultType="com.jiuyu.entity.MarriageEvidenceEntity">
+        select *
+        from tbl_marriage_evidence t
+        WHERE t.`need_signers` like concat('%', #{publicAddress}, '%')
+    </select>
+
+</mapper>

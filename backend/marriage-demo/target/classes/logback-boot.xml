@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!-- LOG目录 -->
+	<property name="LOG_HOME" value="logs/log" />
+	<!-- JSON_LOG目录 -->
+	<property name="JSON_LOG_HOME" value="logs/jsonlog" />
+	<!-- spring.application.name 作为参数 -->
+	<springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread]  %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+      	</encoder>
+    </appender>
+    <!-- 按天压缩日志 -->        
+    <appender name="ZIP_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${APP_NAME}.log</file>   
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/${APP_NAME}.log.%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+    </appender>
+    <!-- 不压缩日志,保留7天 -->
+    <appender name="DEFAULT_INFO_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/${APP_NAME}.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>7</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+    </appender>
+    <!-- LOGSTASH,输出seuleth项,保留7天 -->
+    <appender name="LOGSTASH" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${JSON_LOG_HOME}/${APP_NAME}.json.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>7</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<pattern>
+					<pattern>
+						{
+						"timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+						"severity": "%level",
+						"service": "${APP_NAME:-}",
+						"trace": "%X{X-B3-TraceId:-}",
+						"span": "%X{X-B3-SpanId:-}",
+						"parent": "%X{X-B3-ParentSpanId:-}",
+						"exportable": "%X{X-Span-Export:-}",
+						"pid": "${PID:-}",
+						"thread": "%thread",
+						"class": "%logger{40}",
+						"rest": "%message"
+						}
+					</pattern>
+				</pattern>
+			</providers>
+		</encoder>
+    </appender>
+    <!-- 按天压缩Json日志 -->        
+    <appender name="JSON_ZIP_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${JSON_LOG_HOME}/${APP_NAME}.json.log</file>   
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${JSON_LOG_HOME}/${APP_NAME}.log.%d{yyyy-MM-dd}.%i.json.log.zip</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<pattern>
+					<pattern>
+						{
+						"timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+						"severity": "%level",
+						"service": "${APP_NAME:-}",
+						"trace": "%X{X-B3-TraceId:-}",
+						"span": "%X{X-B3-SpanId:-}",
+						"parent": "%X{X-B3-ParentSpanId:-}",
+						"exportable": "%X{X-Span-Export:-}",
+						"pid": "${PID:-}",
+						"thread": "%thread",
+						"class": "%logger{40}",
+						"rest": "%message"
+						}
+					</pattern>
+				</pattern>
+			</providers>
+		</encoder>
+    </appender>
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+      	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        	<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    	</encoder>
+    </appender>
+    
+	 <logger name="com.jiuyv.unionpay.bsn.portal.dao" level="debug"/> 
+	
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ZIP_FILE" />
+        <appender-ref ref="DEFAULT_INFO_FILE" />
+        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="JSON_ZIP_FILE" />
+    </root>
+</configuration>
