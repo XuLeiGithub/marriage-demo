@@ -27,12 +27,5 @@ public interface UserInfoService extends IService<UserInfoEntity> {
      */
     ResAddUser addUser(ReqAddUser req);
 
-//    /**
-//     * 登记信息
-//     *
-//     * @param req
-//     * @return
-//     */
-//    ResAddUser addUserV2(ReqAddUser req);
 }
 

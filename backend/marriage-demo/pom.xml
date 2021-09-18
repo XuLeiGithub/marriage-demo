@@ -255,7 +255,13 @@
 			<groupId>org.fisco-bcos.java-sdk</groupId>
 			<artifactId>fisco-bcos-java-sdk</artifactId>
 			<version>2.7.2</version>
-		</dependency> 
+		</dependency>
+
+		<dependency>
+			<groupId>com.webank</groupId>
+			<artifactId>webase-app-sdk</artifactId>
+			<version>1.5.1-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
 

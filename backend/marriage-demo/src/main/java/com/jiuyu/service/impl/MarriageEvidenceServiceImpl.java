@@ -3,28 +3,25 @@ package com.jiuyu.service.impl;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.jiuyu.raw.MarriageEvidence;
 import org.fisco.bcos.sdk.abi.datatypes.generated.Bytes32;
-import org.fisco.bcos.sdk.utils.Numeric;
+import org.fisco.bcos.sdk.client.Client;
+import org.fisco.bcos.sdk.crypto.CryptoSuite;
+import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
+import org.fisco.bcos.sdk.model.CryptoType;
+import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.jiuyu.bo.DeployEviInputBO;
-import com.jiuyu.bo.NewEviInputBO;
-import com.jiuyu.bo.SignInputBO;
-import com.jiuyu.bo.TransDataRespBO;
-import com.jiuyu.bo.TransHandleReqBO;
 import com.jiuyu.common.GlobalConstant;
 import com.jiuyu.common.Query;
 import com.jiuyu.common.R;
@@ -43,7 +40,6 @@ import com.jiuyu.enums.MarriageStatusEnum;
 import com.jiuyu.service.MarriageEvidenceService;
 import com.jiuyu.utils.CommonUtils;
 import com.jiuyu.utils.DateUtils;
-import com.jiuyu.utils.HttpUtils;
 import com.jiuyu.utils.PageUtils;
 import com.jiuyu.vo.ReqCreateMarriageEvidenceVo;
 import com.jiuyu.vo.ReqSignVo;
@@ -51,13 +47,11 @@ import com.jiuyu.vo.ResCreateMarriageEvidenceVo;
 import com.jiuyu.vo.ResMarriageDeatailVo;
 import com.jiuyu.vo.ResSignVo;
 
+
 @Service("marriageEvidenceService")
 public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao, MarriageEvidenceEntity> implements MarriageEvidenceService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageEvidenceServiceImpl.class);
-
-    @Value("${webase-front.trans.handle.url}")
-    private String webaseFrontTransHandleUrl;
 
     @Autowired
     private MarriageEvidenceDao marriageEvidenceDao;
@@ -74,6 +68,8 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
     @Autowired
     private MarriageInfoDao marriageInfoDao;
 
+    @Autowired
+    private Client client;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -101,90 +97,36 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
         // 1.用管理员账户进行存证合约部署
         AdminUserEntity dbAdmin = adminUserDao.selectById(req.getAdminUserId());
         ContractTemplateEntity template = contractTemplateDao.queryByTemplate(GlobalConstant.CONTRACT_TEMPLATE);
-        TransHandleReqBO transHandleReqBO = new TransHandleReqBO();
-        transHandleReqBO.setSignUserId(dbAdmin.getSignUserId());
-        transHandleReqBO.setContractName(template.getContractName());
-        transHandleReqBO.setContractAddress(template.getContractAddress());
-        transHandleReqBO.setFuncName("deployEvi");
+        MarriageEvidence marriageEvidence = new MarriageEvidence(template.getContractAddress(), client, client.getCryptoSuite().getCryptoKeyPair());
 
-        JSONArray parseArray = JSONUtil.parseArray(template.getContractAbi());
-        List<Object> abiList = JSONUtil.toList(parseArray, Object.class);
-
-        DeployEviInputBO deployEviInputBO = new DeployEviInputBO();
         //通过UUID生成证书编号
         String certificateNumber = UUID.randomUUID().toString().replaceAll("-", "");
-        deployEviInputBO.setCertificateNumber(certificateNumber);
-
-
-        deployEviInputBO.setWitnessAddress(dbWitness.getPublicAddress());
         String witness = dbWitness.getUsername();
+
         Bytes32 bytes32 = CommonUtils.utf8StringToBytes32(witness);
-        String bytes32Str = Numeric.toHexString(bytes32.getValue());
+        byte[] witnessName = bytes32.getValue();
 
-        deployEviInputBO.setWitnessName(bytes32Str);
-
-        deployEviInputBO.setMaleAddress(dbMale.getPublicAddress());
-        deployEviInputBO.setMaleSummary(JSONUtil.toJsonStr(dbMale));
-        deployEviInputBO.setFemaleAddress(dbFemale.getPublicAddress());
-        deployEviInputBO.setFemaleSummary(JSONUtil.toJsonStr(dbFemale));
-
-        List deployList = new ArrayList<>();
-        deployList.add(deployEviInputBO.getCertificateNumber());
-        deployList.add(deployEviInputBO.getMaleAddress());
-        deployList.add(deployEviInputBO.getMaleSummary());
-        deployList.add(deployEviInputBO.getFemaleAddress());
-        deployList.add(deployEviInputBO.getFemaleSummary());
-        deployList.add(deployEviInputBO.getWitnessAddress());
-        deployList.add(deployEviInputBO.getWitnessName());
-
-
-        transHandleReqBO.setFuncParam(deployList);
-        transHandleReqBO.setContractAbi(abiList);
-        transHandleReqBO.setGroupId(1);
-        transHandleReqBO.setUseCns(false);
-
-        LOGGER.info("调用webase-front接口,url>>{},请求参数:>>{}", webaseFrontTransHandleUrl, JSONUtil.toJsonStr(transHandleReqBO));
-        String result = HttpUtils.httpPostByJson(webaseFrontTransHandleUrl, JSONUtil.toJsonStr(transHandleReqBO));
-        LOGGER.info("调用webase-front接口,响应结果reslut:>>{}", result);
-//        TransDataRespBO resBO = JSONUtil.toBean(result, TransDataRespBO.class);
+        //调用deployEvi方法
+        String witnessAddress = dbWitness.getPublicAddress();
+        String maleAddress = dbMale.getPublicAddress();
+        String maleSummary = JSONUtil.toJsonStr(dbMale);
+        String femaleAddress = dbFemale.getPublicAddress();
+        String femaleSummary = JSONUtil.toJsonStr(dbFemale);
+        TransactionReceipt deployEvi = marriageEvidence.deployEvi(certificateNumber, maleAddress, maleSummary, femaleAddress, femaleSummary, witnessAddress, witnessName);
+        LOGGER.info("调用deployEvi方法,响应参数:>>{}", deployEvi);
 
         // 2.调用newEvi 方法
-        TransHandleReqBO newEviReq = new TransHandleReqBO();
-
-
-        newEviReq.setSignUserId(dbAdmin.getSignUserId());
-        newEviReq.setContractName(template.getContractName());
-        newEviReq.setContractAddress(template.getContractAddress());
-        newEviReq.setFuncName("newEvi");
-
-
-        NewEviInputBO newEviInputBO = new NewEviInputBO();
-        newEviInputBO.setCertificateNumber(deployEviInputBO.getCertificateNumber());
         StringBuffer sb = new StringBuffer();
         sb.append("恭喜【").append(dbMale.getUsername()).append("】先生与").append("【")
                 .append(dbFemale.getUsername()).append("】女士于").append(now)
                 .append("登记成为合法夫妻!").append("证婚人：").append(dbWitness.getUsername());
-        newEviInputBO.setEvi(sb.toString());
-
-        List list = new ArrayList<>();
-        list.add(newEviInputBO.getCertificateNumber());
-        list.add(newEviInputBO.getEvi());
-
-        newEviReq.setFuncParam(list);
-        newEviReq.setContractAbi(abiList);
-        newEviReq.setGroupId(1);
-        newEviReq.setUseCns(false);
-
-        LOGGER.info("调用webase-front接口,url>>{},请求参数:>>{}", webaseFrontTransHandleUrl, JSONUtil.toJsonStr(newEviReq));
-        String newEviRes = HttpUtils.httpPostByJson(webaseFrontTransHandleUrl, JSONUtil.toJsonStr(newEviReq));
-        LOGGER.info("调用webase-front接口,响应结果reslut:>>{}", result);
-        TransDataRespBO newEviResBO = JSONUtil.toBean(newEviRes, TransDataRespBO.class);
-        String transactionHash = newEviResBO.getTransactionHash();
-
+        TransactionReceipt newEvi = marriageEvidence.newEvi(certificateNumber, sb.toString());
+        LOGGER.info("调用newEvi方法,响应参数:>>{}", newEvi);
+        String transactionHash = newEvi.getTransactionHash();
 
         // 3.落地tbl_marriage_info 表
         MarriageInfoEntity marriageInfo = new MarriageInfoEntity();
-        marriageInfo.setCertificateNumber(deployEviInputBO.getCertificateNumber());
+        marriageInfo.setCertificateNumber(certificateNumber);
         marriageInfo.setMaleUsername(dbMale.getUsername());
         marriageInfo.setMaleUserId(dbMale.getId());
         marriageInfo.setMaleSignUserId(dbMale.getSignUserId());
@@ -210,22 +152,19 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
         needSigners.add(dbMale.getPublicAddress());
         needSigners.add(dbFemale.getPublicAddress());
         needSigners.add(dbWitness.getPublicAddress());
-
         List<String> hasSigners = new ArrayList<String>();
         hasSigners.add(dbAdmin.getPublicAddress());
-
         List<String> txIds = new ArrayList<String>();
         txIds.add(transactionHash);
 
-
-        evidence.setEvidenceKey(newEviResBO.getLogs().get(0).getAddress());
+        evidence.setEvidenceKey(newEvi.getLogs().get(0).getAddress());
         evidence.setEvidenceValue(sb.toString());
         evidence.setNeedSigners(JSONUtil.toJsonStr(needSigners));
         evidence.setHasSigners(JSONUtil.toJsonStr(hasSigners));
         evidence.setTxId(JSONUtil.toJsonStr(txIds));
         evidence.setInsertTime(date);
         evidence.setUpdateTime(date);
-        evidence.setCertificateNumber(newEviInputBO.getCertificateNumber());
+        evidence.setCertificateNumber(certificateNumber);
         marriageEvidenceDao.insert(evidence);
 
         ResCreateMarriageEvidenceVo res = new ResCreateMarriageEvidenceVo();
@@ -239,6 +178,7 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
         Date now = new Date();
         Long userId = req.getUserId();
         UserInfoEntity dbUser = userInfoDao.selectById(userId);
+        String privateKey = dbUser.getPrivateKey();
         String publicAddress = dbUser.getPublicAddress();
         MarriageEvidenceEntity dbEvi = marriageEvidenceDao.queryByUserPublicAddress(dbUser.getPublicAddress());
 
@@ -252,33 +192,16 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
         }
 
         // 1.用户选择签名
-        //AdminUserEntity dbAdmin = adminUserDao.selectById(req.getAdminUserId());
         ContractTemplateEntity template = contractTemplateDao.queryByTemplate(GlobalConstant.CONTRACT_TEMPLATE);
-        TransHandleReqBO transHandleReqBO = new TransHandleReqBO();
-        transHandleReqBO.setSignUserId(dbUser.getSignUserId());
-        transHandleReqBO.setContractName(template.getContractName());
-        transHandleReqBO.setContractAddress(template.getContractAddress());
-        transHandleReqBO.setFuncName("sign");
+        //私钥base64转16进制
+        String hexPrivateKey = new String(Base64.getDecoder().decode(privateKey));
+        CryptoKeyPair loadAccountFromHexPrivateKey = loadAccountFromHexPrivateKey(CryptoType.ECDSA_TYPE, hexPrivateKey);
+        //调用sign方法
+        MarriageEvidence marriageEvidence = new MarriageEvidence(template.getContractAddress(), client, loadAccountFromHexPrivateKey);
+        TransactionReceipt sign = marriageEvidence.sign(req.getCertificateNumber());
+        LOGGER.info("调用sign方法,响应参数:>>{}", sign);
 
-        JSONArray parseArray = JSONUtil.parseArray(template.getContractAbi());
-        List<Object> abiList = JSONUtil.toList(parseArray, Object.class);
-
-        SignInputBO signInputBO = new SignInputBO();
-        signInputBO.setCertificateNumber(String.valueOf(req.getCertificateNumber()));
-
-        List list = new ArrayList<>();
-        list.add(signInputBO.getCertificateNumber());
-
-        transHandleReqBO.setFuncParam(list);
-        transHandleReqBO.setContractAbi(abiList);
-        transHandleReqBO.setGroupId(1);
-        transHandleReqBO.setUseCns(false);
-
-        LOGGER.info("调用webase-front接口,url>>{},请求参数:>>{}", webaseFrontTransHandleUrl, JSONUtil.toJsonStr(transHandleReqBO));
-        String result = HttpUtils.httpPostByJson(webaseFrontTransHandleUrl, JSONUtil.toJsonStr(transHandleReqBO));
-        LOGGER.info("调用webase-front接口,响应结果reslut:>>{}", result);
-        TransDataRespBO resBO = JSONUtil.toBean(result, TransDataRespBO.class);
-        String transactionHash = resBO.getTransactionHash();
+        String transactionHash = sign.getTransactionHash();
 
         // 2.更新tbl_user_info表
         dbUser.setUpdateTime(now);
@@ -342,5 +265,14 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
 
         res.setCertificateNumber(certificateNumber);
         return res;
+    }
+
+    private CryptoKeyPair loadAccountFromHexPrivateKey(int cryptoType, String hexPrivateKey) {
+        // 根据cryptoType创建cryptoSuite，cryptoType目前支持：
+        // 1. CryptoType.ECDSA_TYPE: 用于创建非国密类型的CryptoSuite
+        // 2. CryptoType.SM_TYPE:    用于创建国密类型的CryptoSuite
+        CryptoSuite cryptoSuite = new CryptoSuite(cryptoType);
+        // 从十六进制私钥字符串hexPrivateKey加载私钥对象
+        return cryptoSuite.getKeyPairFactory().createKeyPair(hexPrivateKey);
     }
 }

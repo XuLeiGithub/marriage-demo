@@ -36,6 +36,10 @@ public class UserInfoEntity implements Serializable {
      */
     private String publicAddress;
     /**
+     * 用户私钥
+     */
+    private String privateKey;
+    /**
      * 家庭住址
      */
     private String familyAddress;
@@ -102,6 +106,14 @@ public class UserInfoEntity implements Serializable {
 
     public void setPublicAddress(String publicAddress) {
         this.publicAddress = publicAddress;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
     }
 
     public String getFamilyAddress() {

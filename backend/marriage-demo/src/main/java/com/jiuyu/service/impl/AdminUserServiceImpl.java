@@ -13,19 +13,19 @@ import com.jiuyu.vo.ReqLoginVo;
 @Service("adminUserService")
 public class AdminUserServiceImpl extends ServiceImpl<AdminUserDao, AdminUserEntity> implements AdminUserService {
 
-	@Autowired
-	private AdminUserDao adminUserDao;
+    @Autowired
+    private AdminUserDao adminUserDao;
 
-	@Override
-	public AdminUserEntity login(ReqLoginVo req) {
-		
-		// TODO 后续密码需要加密处理
-		String username = req.getUsername();
-		String password = req.getPassword();
-		
-		AdminUserEntity result = adminUserDao.selectAdminUser(username,password);
-		
-		return result;
-	}
+    @Override
+    public AdminUserEntity login(ReqLoginVo req) {
+
+        // TODO 后续密码需要加密处理
+        String username = req.getUsername();
+        String password = req.getPassword();
+
+        AdminUserEntity result = adminUserDao.selectAdminUser(username, password);
+
+        return result;
+    }
 
 }

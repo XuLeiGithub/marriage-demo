@@ -9,6 +9,7 @@
         <result property="username" column="username"/>
         <result property="signUserId" column="sign_user_id"/>
         <result property="publicAddress" column="public_address"/>
+        <result property="privateKey" column="private_key"/>
         <result property="familyAddress" column="family_address"/>
         <result property="idCard" column="id_card"/>
         <result property="age" column="age"/>
