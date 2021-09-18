@@ -275,4 +275,5 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
         // 从十六进制私钥字符串hexPrivateKey加载私钥对象
         return cryptoSuite.getKeyPairFactory().createKeyPair(hexPrivateKey);
     }
+
 }
