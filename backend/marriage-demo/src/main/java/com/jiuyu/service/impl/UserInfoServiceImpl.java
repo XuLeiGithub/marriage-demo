@@ -48,15 +48,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfoEntity
     @Autowired
     private UserInfoDao userInfoDao;
 
-    @Autowired
-    private ContractTemplateDao contractTemplateDao;
-
     private static AppClient appClient = null;
 
     private static final String ACCOUNT = "admin";
 
     private static final String CONTRACT_VERSION = "1.0.0";
-
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {

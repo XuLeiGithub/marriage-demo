@@ -555,3 +555,126 @@ Caused by: org.fisco.bcos.sdk.config.exceptions.ConfigException: Failed to conne
 2021-09-22 11:04:28.596 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2021-09-22 11:04:28.602 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown initiated...
 2021-09-22 11:04:28.620 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown completed.
+2021-09-22 14:10:20.191 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.0.Final
+2021-09-22 14:10:20.466 [background-preinit] WARN  o.s.h.converter.json.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-09-22 14:10:25.266 [main] WARN  org.springframework.boot.StartupInfoLogger - InetAddress.getLocalHost().getHostName() took 5015 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2021-09-22 14:10:30.322 [main] INFO  com.jiuyu.Application - Starting Application on MrchengdeMacBook-Pro.local with PID 15053 (/Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo/target/classes started by mr.cheng in /Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo)
+2021-09-22 14:10:30.333 [main] INFO  com.jiuyu.Application - No active profile set, falling back to default profiles: default
+2021-09-22 14:10:31.063 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-22 14:10:31.067 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-09-22 14:10:31.108 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+2021-09-22 14:10:32.000 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-09-22 14:10:32.013 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-09-22 14:10:32.014 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-09-22 14:10:32.014 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-09-22 14:10:32.093 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-09-22 14:10:32.094 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1706 ms
+2021-09-22 14:10:53.061 [main] INFO  org.fisco.bcos.sdk.network.ConnectionManager -  all connections, size: 1, list: [ConnectionInfo{host='121.5.145.25', port=20200}]
+2021-09-22 14:10:53.091 [main] INFO  org.fisco.bcos.sdk.network.ConnectionManager -  build ECDSA ssl context with configured certificates 
+2021-09-22 14:10:59.038 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.network.ChannelHandler -  handshake success, host: 121.5.145.25, port: 20200, ctx: 2064139728
+2021-09-22 14:10:59.127 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  node: ClientVersion{version='2.7.2', supportedVersion='2.7.2', chainId='1', buildTime='20210201 10:03:03', buildType='Linux/clang/Release', gitBranch='HEAD', gitCommitHash='4c8a5bbe44c19db8a002017ff9dbb16d3d28e9da'}, content: {"id":0,"jsonrpc":"2.0","result":{"Build Time":"20210201 10:03:03","Build Type":"Linux/clang/Release","Chain Id":"1","FISCO-BCOS Version":"2.7.2","Git Branch":"HEAD","Git Commit Hash":"4c8a5bbe44c19db8a002017ff9dbb16d3d28e9da","Supported Version":"2.7.2"}}
+
+2021-09-22 14:10:59.129 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  support channel handshake node
+2021-09-22 14:10:59.145 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  channel protocol handshake success, set socket channel protocol, host: 121.5.145.25:20200, channel protocol: ChannelProtocol [protocol=3, nodeVersion=2.7.2, EnumProtocol=VERSION_3]
+2021-09-22 14:10:59.149 [main] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  Connect to  nodes: 121.5.145.25:20200, java version: 1.8.0_301 ,java vendor: Oracle Corporation
+2021-09-22 14:10:59.151 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, start channel success, cryptoType: 0
+2021-09-22 14:10:59.158 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, start channel succ, channelProcessorThreadSize: 8, receiptProcessorThreadSize: 8
+2021-09-22 14:10:59.165 [main] INFO  org.fisco.bcos.sdk.service.GroupManagerServiceImpl - registerBlockNumberNotifyHandler
+2021-09-22 14:10:59.165 [main] INFO  org.fisco.bcos.sdk.service.GroupManagerServiceImpl - registerTransactionNotifyHandler
+2021-09-22 14:10:59.258 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, create groupManagerService success
+2021-09-22 14:11:00.195 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - update subscribe inform 1 peers
+2021-09-22 14:11:00.203 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - amop module started
+2021-09-22 14:11:00.203 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - update subscribe inform 1 peers
+2021-09-22 14:11:00.204 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, create Amop success
+2021-09-22 14:11:00.255 [main] INFO  org.fisco.bcos.sdk.crypto.CryptoSuite - init CryptoSuite, cryptoType: 0
+2021-09-22 14:11:00.273 [main] INFO  org.fisco.bcos.sdk.client.Client - build client success for group 1
+2021-09-22 14:11:00.274 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create client for group 1 success
+2021-09-22 14:11:00.284 [main] INFO  com.jiuyu.config.SdkBeanConfig - Chain connect successful. Current block number 10
+2021-09-22 14:11:00.299 [main] INFO  com.jiuyu.config.SdkBeanConfig - is Gm:false, address:0xe321f14ebf24bf74ec74646bc9efaa9e89295599
+2021-09-22 14:11:00.794 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-22 14:11:01.377 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-09-22 14:11:01.391 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-09-22 14:11:01.404 [main] INFO  com.jiuyu.Application - Started Application in 51.91 seconds (JVM running for 57.606)
+2021-09-22 14:11:28.431 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-09-22 15:31:10.151 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.0.Final
+2021-09-22 15:31:10.424 [background-preinit] WARN  o.s.h.converter.json.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-09-22 15:31:15.209 [main] WARN  org.springframework.boot.StartupInfoLogger - InetAddress.getLocalHost().getHostName() took 5012 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2021-09-22 15:31:20.268 [main] INFO  com.jiuyu.Application - Starting Application on MrchengdeMacBook-Pro.local with PID 18380 (/Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo/target/classes started by mr.cheng in /Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo)
+2021-09-22 15:31:20.280 [main] INFO  com.jiuyu.Application - No active profile set, falling back to default profiles: default
+2021-09-22 15:31:21.052 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-22 15:31:21.055 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-09-22 15:31:21.096 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+2021-09-22 15:31:22.016 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-09-22 15:31:22.030 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-09-22 15:31:22.031 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-09-22 15:31:22.031 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-09-22 15:31:22.117 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-09-22 15:31:22.118 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1780 ms
+2021-09-22 15:31:43.131 [main] INFO  org.fisco.bcos.sdk.network.ConnectionManager -  all connections, size: 1, list: [ConnectionInfo{host='121.5.145.25', port=20200}]
+2021-09-22 15:31:43.163 [main] INFO  org.fisco.bcos.sdk.network.ConnectionManager -  build ECDSA ssl context with configured certificates 
+2021-09-22 15:31:48.816 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.network.ChannelHandler -  handshake success, host: 121.5.145.25, port: 20200, ctx: 643890137
+2021-09-22 15:31:48.889 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  node: ClientVersion{version='2.7.2', supportedVersion='2.7.2', chainId='1', buildTime='20210201 10:03:03', buildType='Linux/clang/Release', gitBranch='HEAD', gitCommitHash='4c8a5bbe44c19db8a002017ff9dbb16d3d28e9da'}, content: {"id":0,"jsonrpc":"2.0","result":{"Build Time":"20210201 10:03:03","Build Type":"Linux/clang/Release","Chain Id":"1","FISCO-BCOS Version":"2.7.2","Git Branch":"HEAD","Git Commit Hash":"4c8a5bbe44c19db8a002017ff9dbb16d3d28e9da","Supported Version":"2.7.2"}}
+
+2021-09-22 15:31:48.891 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  support channel handshake node
+2021-09-22 15:31:48.901 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  channel protocol handshake success, set socket channel protocol, host: 121.5.145.25:20200, channel protocol: ChannelProtocol [protocol=3, nodeVersion=2.7.2, EnumProtocol=VERSION_3]
+2021-09-22 15:31:48.923 [main] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  Connect to  nodes: 121.5.145.25:20200, java version: 1.8.0_301 ,java vendor: Oracle Corporation
+2021-09-22 15:31:48.927 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, start channel success, cryptoType: 0
+2021-09-22 15:31:48.934 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, start channel succ, channelProcessorThreadSize: 8, receiptProcessorThreadSize: 8
+2021-09-22 15:31:48.942 [main] INFO  org.fisco.bcos.sdk.service.GroupManagerServiceImpl - registerBlockNumberNotifyHandler
+2021-09-22 15:31:48.946 [main] INFO  org.fisco.bcos.sdk.service.GroupManagerServiceImpl - registerTransactionNotifyHandler
+2021-09-22 15:31:49.010 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, create groupManagerService success
+2021-09-22 15:31:49.721 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - update subscribe inform 1 peers
+2021-09-22 15:31:49.731 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - amop module started
+2021-09-22 15:31:49.731 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - update subscribe inform 1 peers
+2021-09-22 15:31:49.731 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, create Amop success
+2021-09-22 15:31:49.786 [main] INFO  org.fisco.bcos.sdk.crypto.CryptoSuite - init CryptoSuite, cryptoType: 0
+2021-09-22 15:31:49.807 [main] INFO  org.fisco.bcos.sdk.client.Client - build client success for group 1
+2021-09-22 15:31:49.808 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create client for group 1 success
+2021-09-22 15:31:49.821 [main] INFO  com.jiuyu.config.SdkBeanConfig - Chain connect successful. Current block number 10
+2021-09-22 15:31:49.838 [main] INFO  com.jiuyu.config.SdkBeanConfig - is Gm:false, address:0xe321f14ebf24bf74ec74646bc9efaa9e89295599
+2021-09-22 15:31:50.314 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-22 15:31:50.894 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-09-22 15:31:50.908 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-09-22 15:31:50.919 [main] INFO  com.jiuyu.Application - Started Application in 51.472 seconds (JVM running for 57.192)
+2021-09-22 15:33:16.859 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-09-22 16:44:33.243 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.1.0.Final
+2021-09-22 16:44:33.538 [background-preinit] WARN  o.s.h.converter.json.Jackson2ObjectMapperBuilder - For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-09-22 16:44:38.312 [main] WARN  org.springframework.boot.StartupInfoLogger - InetAddress.getLocalHost().getHostName() took 5015 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2021-09-22 16:44:43.358 [main] INFO  com.jiuyu.Application - Starting Application on MrchengdeMacBook-Pro.local with PID 21375 (/Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo/target/classes started by mr.cheng in /Users/mr.cheng/Desktop/marriage-demo/backend/marriage-demo)
+2021-09-22 16:44:43.366 [main] INFO  com.jiuyu.Application - No active profile set, falling back to default profiles: default
+2021-09-22 16:44:44.173 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-09-22 16:44:44.176 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-09-22 16:44:44.217 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21ms. Found 0 Redis repository interfaces.
+2021-09-22 16:44:45.114 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-09-22 16:44:45.123 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-09-22 16:44:45.124 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-09-22 16:44:45.124 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-09-22 16:44:45.277 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-09-22 16:44:45.279 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1848 ms
+2021-09-22 16:45:06.383 [main] INFO  org.fisco.bcos.sdk.network.ConnectionManager -  all connections, size: 1, list: [ConnectionInfo{host='121.5.145.25', port=20200}]
+2021-09-22 16:45:06.416 [main] INFO  org.fisco.bcos.sdk.network.ConnectionManager -  build ECDSA ssl context with configured certificates 
+2021-09-22 16:45:12.396 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.network.ChannelHandler -  handshake success, host: 121.5.145.25, port: 20200, ctx: 788762387
+2021-09-22 16:45:12.483 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  node: ClientVersion{version='2.7.2', supportedVersion='2.7.2', chainId='1', buildTime='20210201 10:03:03', buildType='Linux/clang/Release', gitBranch='HEAD', gitCommitHash='4c8a5bbe44c19db8a002017ff9dbb16d3d28e9da'}, content: {"id":0,"jsonrpc":"2.0","result":{"Build Time":"20210201 10:03:03","Build Type":"Linux/clang/Release","Chain Id":"1","FISCO-BCOS Version":"2.7.2","Git Branch":"HEAD","Git Commit Hash":"4c8a5bbe44c19db8a002017ff9dbb16d3d28e9da","Supported Version":"2.7.2"}}
+
+2021-09-22 16:45:12.484 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  support channel handshake node
+2021-09-22 16:45:12.495 [nioEventLoopGroup-2-1] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  channel protocol handshake success, set socket channel protocol, host: 121.5.145.25:20200, channel protocol: ChannelProtocol [protocol=3, nodeVersion=2.7.2, EnumProtocol=VERSION_3]
+2021-09-22 16:45:12.505 [main] INFO  org.fisco.bcos.sdk.channel.ChannelImp -  Connect to  nodes: 121.5.145.25:20200, java version: 1.8.0_301 ,java vendor: Oracle Corporation
+2021-09-22 16:45:12.507 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, start channel success, cryptoType: 0
+2021-09-22 16:45:12.515 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, start channel succ, channelProcessorThreadSize: 8, receiptProcessorThreadSize: 8
+2021-09-22 16:45:12.522 [main] INFO  org.fisco.bcos.sdk.service.GroupManagerServiceImpl - registerBlockNumberNotifyHandler
+2021-09-22 16:45:12.523 [main] INFO  org.fisco.bcos.sdk.service.GroupManagerServiceImpl - registerTransactionNotifyHandler
+2021-09-22 16:45:12.590 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, create groupManagerService success
+2021-09-22 16:45:13.558 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - update subscribe inform 1 peers
+2021-09-22 16:45:13.567 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - amop module started
+2021-09-22 16:45:13.568 [main] INFO  org.fisco.bcos.sdk.amop.AmopImp - update subscribe inform 1 peers
+2021-09-22 16:45:13.568 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create BcosSDK, create Amop success
+2021-09-22 16:45:13.624 [main] INFO  org.fisco.bcos.sdk.crypto.CryptoSuite - init CryptoSuite, cryptoType: 0
+2021-09-22 16:45:13.645 [main] INFO  org.fisco.bcos.sdk.client.Client - build client success for group 1
+2021-09-22 16:45:13.646 [main] INFO  org.fisco.bcos.sdk.BcosSDK - create client for group 1 success
+2021-09-22 16:45:13.663 [main] INFO  com.jiuyu.config.SdkBeanConfig - Chain connect successful. Current block number 13
+2021-09-22 16:45:13.679 [main] INFO  com.jiuyu.config.SdkBeanConfig - is Gm:false, address:0xe321f14ebf24bf74ec74646bc9efaa9e89295599
+2021-09-22 16:45:14.168 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-22 16:45:14.788 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-09-22 16:45:14.803 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-09-22 16:45:14.815 [main] INFO  com.jiuyu.Application - Started Application in 52.272 seconds (JVM running for 58.092)
+2021-09-22 16:45:25.896 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
