@@ -17,12 +17,11 @@ import com.jiuyu.service.MarriageInfoService;
 import com.jiuyu.utils.PageUtils;
 
 
-
 @Service("marriageInfoService")
 public class MarriageInfoServiceImpl extends ServiceImpl<MarriageInfoDao, MarriageInfoEntity> implements MarriageInfoService {
-	
-	@Autowired
-	private MarriageInfoDao marriageInfoDao;
+
+    @Autowired
+    private MarriageInfoDao marriageInfoDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -34,10 +33,10 @@ public class MarriageInfoServiceImpl extends ServiceImpl<MarriageInfoDao, Marria
         return new PageUtils(page);
     }
 
-	@Override
-	public List<MarriageInfoEntity> queryConfirmMarriageList() {
-		List<MarriageInfoEntity> list = marriageInfoDao.selectList(new QueryWrapper<MarriageInfoEntity>().eq("cert_status", CertStatusEnum.CONFIRMED.getMsg()));
-		return list;
-	}
+    @Override
+    public List<MarriageInfoEntity> queryConfirmMarriageList() {
+        List<MarriageInfoEntity> list = marriageInfoDao.selectList(new QueryWrapper<MarriageInfoEntity>().eq("cert_status", CertStatusEnum.CONFIRMED.getMsg()));
+        return list;
+    }
 
 }

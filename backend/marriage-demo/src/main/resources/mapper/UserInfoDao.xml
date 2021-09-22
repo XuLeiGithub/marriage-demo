@@ -3,7 +3,7 @@
 
 <mapper namespace="com.jiuyu.dao.UserInfoDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.jiuyu.entity.UserInfoEntity" id="userInfoMap">
         <result property="id" column="id"/>
         <result property="username" column="username"/>
