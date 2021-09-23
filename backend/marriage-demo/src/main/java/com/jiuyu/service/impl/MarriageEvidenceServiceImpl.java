@@ -103,6 +103,14 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
         String certificateNumber = UUID.randomUUID().toString().replaceAll("-", "");
         String witness = dbWitness.getUsername();
 
+        //更新tbl_user_info表，添加证书编号
+        dbMale.setCertificateNumber(certificateNumber);
+        userInfoDao.updateById(dbMale);
+        dbFemale.setCertificateNumber(certificateNumber);
+        userInfoDao.updateById(dbFemale);
+        dbWitness.setCertificateNumber(certificateNumber);
+        userInfoDao.updateById(dbWitness);
+
         Bytes32 bytes32 = CommonUtils.utf8StringToBytes32(witness);
         byte[] witnessName = bytes32.getValue();
 

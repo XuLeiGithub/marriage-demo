@@ -242,7 +242,7 @@ export default {
         })
       })
         }).catch(() => {
-          console.log('取消签名')        
+          console.log('取消签名')
         });
 
 

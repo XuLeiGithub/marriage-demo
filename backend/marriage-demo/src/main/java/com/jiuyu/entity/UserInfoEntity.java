@@ -67,6 +67,10 @@ public class UserInfoEntity implements Serializable {
      * 签名状态
      */
     private String marriageStatus;
+    /**
+     * 证书编号
+     */
+    private String certificateNumber;
 
     public String getMarriageStatus() {
         return marriageStatus;
@@ -164,5 +168,11 @@ public class UserInfoEntity implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public void setCertificateNumber(String certificateNumber) {
+        this.certificateNumber = certificateNumber;
+    }
 
+    public String getCertificateNumber() {
+        return certificateNumber;
+    }
 }

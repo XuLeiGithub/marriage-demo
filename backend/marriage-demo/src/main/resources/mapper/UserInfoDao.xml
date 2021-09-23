@@ -17,6 +17,7 @@
         <result property="insertTime" column="insert_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="marriageStatus" column="marriage_status"/>
+        <result property="certificateNumber" column="certificate_number"/>
     </resultMap>
 
 

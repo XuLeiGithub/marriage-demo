@@ -19,32 +19,33 @@ import com.jiuyu.vo.ResIndexVo;
 /**
  * <p>Title: IndexController</p>
  * <p>Description: </p>
+ *
  * @author he_jiebing@jiuyv.com
-   @date   2021年8月19日 下午9:56:18
+ * @date 2021年8月19日 下午9:56:18
  */
 @RequestMapping("/marriage")
 @RestController
 public class IndexController {
-	
-	@Autowired
-	private MarriageInfoService marriageInfoService;
-	
-	@GetMapping("/unlogin/index")
-	public R queryUnLoginIndexInfo(@RequestParam(required=false,name="name") ReqNull req){
-		List<MarriageInfoEntity> list = marriageInfoService.queryConfirmMarriageList();
-		List<ResIndexVo> result = list.stream().map(item -> {
-			ResIndexVo res = new ResIndexVo();
-			BeanUtils.copyProperties(item, res);
-			return res;
-		}).collect(Collectors.toList());
-		
-		return R.ok(result);
-	}
-	
-	@GetMapping("/login/index")
-	public R queryLoginIndexInfo(@RequestParam(required=false,name="name") ReqNull req){
-		List<MarriageInfoEntity> list = marriageInfoService.list();
-		return R.ok(list);
-	}
+
+    @Autowired
+    private MarriageInfoService marriageInfoService;
+
+    @GetMapping("/unlogin/index")
+    public R queryUnLoginIndexInfo(@RequestParam(required = false, name = "name") ReqNull req) {
+        List<MarriageInfoEntity> list = marriageInfoService.queryConfirmMarriageList();
+        List<ResIndexVo> result = list.stream().map(item -> {
+            ResIndexVo res = new ResIndexVo();
+            BeanUtils.copyProperties(item, res);
+            return res;
+        }).collect(Collectors.toList());
+
+        return R.ok(result);
+    }
+
+    @GetMapping("/login/index")
+    public R queryLoginIndexInfo(@RequestParam(required = false, name = "name") ReqNull req) {
+        List<MarriageInfoEntity> list = marriageInfoService.list();
+        return R.ok(list);
+    }
 
 }
