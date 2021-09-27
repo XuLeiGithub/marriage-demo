@@ -91,7 +91,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfoEntity
         userEntity.setPublicAddress(address);
         userEntity.setPrivateKey(privateKey);
 
-        userEntity.setMarriageStatus(MarriageStatusEnum.NO_MARRIAGE.getCode());
+        userEntity.setMarriageStatus(MarriageStatusEnum.NEW_USER.getCode());
         userInfoDao.insert(userEntity);
         ResAddUser res = new ResAddUser();
         res.setTxHash(req.getUsername() + "添加成功");
