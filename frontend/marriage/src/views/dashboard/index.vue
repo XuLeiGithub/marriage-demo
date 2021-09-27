@@ -225,9 +225,11 @@ export default {
         }).then(() => {
       const adminUserId = Number(getUserId())
       const userId = row.id
+      const certificateNumber = row.certificateNumber
       const params = {
         adminUserId,
-        userId
+        userId,
+        certificateNumber
       }
       console.log(params)
       addSign(params).then(res => {
@@ -242,7 +244,7 @@ export default {
         })
       })
         }).catch(() => {
-          console.log('取消签名')
+          console.log('取消签名')        
         });
 
 
