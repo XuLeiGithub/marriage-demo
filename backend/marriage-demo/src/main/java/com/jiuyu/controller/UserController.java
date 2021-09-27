@@ -56,7 +56,7 @@ public class UserController {
         List<UserInfoEntity> result = list.stream()
                 .filter(item -> item.getSex().equals(sex)
                         && item.getMarriageStatus().equals(
-                        MarriageStatusEnum.NO_MARRIAGE.getCode()))
+                        MarriageStatusEnum.NEW_USER.getCode()))
                 .collect(Collectors.toList());
         return R.ok(result);
     }

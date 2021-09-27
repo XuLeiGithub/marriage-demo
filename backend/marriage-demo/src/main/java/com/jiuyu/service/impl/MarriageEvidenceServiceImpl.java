@@ -105,10 +105,13 @@ public class MarriageEvidenceServiceImpl extends ServiceImpl<MarriageEvidenceDao
 
         //更新tbl_user_info表，添加证书编号
         dbMale.setCertificateNumber(certificateNumber);
+        dbMale.setMarriageStatus(MarriageStatusEnum.NO_MARRIAGE.getCode());
         userInfoDao.updateById(dbMale);
         dbFemale.setCertificateNumber(certificateNumber);
+        dbFemale.setMarriageStatus(MarriageStatusEnum.NO_MARRIAGE.getCode());
         userInfoDao.updateById(dbFemale);
         dbWitness.setCertificateNumber(certificateNumber);
+        dbWitness.setMarriageStatus(MarriageStatusEnum.NO_MARRIAGE.getCode());
         userInfoDao.updateById(dbWitness);
 
         Bytes32 bytes32 = CommonUtils.utf8StringToBytes32(witness);

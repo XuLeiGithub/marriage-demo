@@ -10,7 +10,8 @@ package com.jiuyu.enums;
 public enum MarriageStatusEnum {
 	
 	HAS_MARRIAHE("00","HAS_MARRIAHE"),
-	NO_MARRIAGE("01","NO_MARRIAGE");
+	NO_MARRIAGE("01","NO_MARRIAGE"),
+	NEW_USER("02","NEW_USER");
 	
 	
     private String code;
