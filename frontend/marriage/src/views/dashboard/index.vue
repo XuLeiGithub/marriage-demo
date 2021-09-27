@@ -41,7 +41,9 @@
           {{ scope.row.familyAddress }}
         </template>
       </el-table-column>
-      <el-table-column label="创建日期" prop="updateTime" width="210" align="center"   >
+      <el-table-column label="创建日期" prop="insertTime" width="210" align="center"   >
+      </el-table-column>
+      <el-table-column label="签名时间" prop="updateTime" width="210" align="center"   >
       </el-table-column>
       <el-table-column
         align="center"
@@ -50,7 +52,16 @@
         width="200"
       >
         <template slot-scope="scope">
-          <a class="btn-link" @click="handleSigned(scope.row)">签名</a>
+          <div v-if="scope.row.marriageStatus== '00'">
+             <span></span>
+          </div>
+          <div v-if="scope.row.marriageStatus== '01'">
+             <a class="btn-link" @click="handleSigned(scope.row)">签名</a>
+          </div>
+          <div v-if="scope.row.marriageStatus== '02'">
+              <span style ="color:#0ba54b">已签名</span>
+          </div>
+         
         </template>
       </el-table-column>
       <!-- <el-table-column label="查看供应商" width="110" align="center">

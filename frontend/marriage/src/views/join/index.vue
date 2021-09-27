@@ -25,8 +25,8 @@
       </el-table-column>
       <el-table-column label="证书状态" width="100" show-overflow-tooltip>
         <template slot-scope="scope">
-          <div v-if=" scope.row.certStatus == 'confirmed'">已确认</div>
-          <div v-if=" scope.row.certStatus == 'draft'">草稿</div>
+          <div style="color:#0ba54b" v-if=" scope.row.certStatus == 'confirmed'">已确认</div>
+          <div style="color:grey" v-if=" scope.row.certStatus == 'draft'">草稿</div>
         </template>
       </el-table-column>
       <el-table-column label="男方姓名" width="100" show-overflow-tooltip>
