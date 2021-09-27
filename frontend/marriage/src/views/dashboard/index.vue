@@ -15,7 +15,7 @@
           {{ scope.row.idCard }}
         </template>
       </el-table-column> -->
-      <el-table-column label="姓名" width="90">
+      <el-table-column label="姓名" width="150">
         <template slot-scope="scope">
           {{ scope.row.username }}
         </template>

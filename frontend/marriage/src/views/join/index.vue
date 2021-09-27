@@ -54,7 +54,7 @@
           {{ scope.row.femaleUsername }}
         </template>
       </el-table-column>
-      <el-table-column label="女方公钥地址" width="210" align="center">
+      <el-table-column label="女方公钥地址" min-width="210"  show-overflow-tooltip align="center">
         <template slot-scope="scope">
           {{ scope.row.femalePublicAddress }}
         </template>
@@ -64,12 +64,12 @@
           {{ scope.row.witnessUsername }}
         </template>
       </el-table-column>
-      <el-table-column label="证婚人公钥地址" width="210" align="center">
+      <el-table-column label="证婚人公钥地址" min-width="210"  show-overflow-tooltip align="center">
         <template slot-scope="scope">
           {{ scope.row.witnessPublicAddress }}
         </template>
       </el-table-column>
-      <el-table-column label="描述" align="center" show-overflow-tooltip>
+      <el-table-column label="描述" align="center" min-width="120" show-overflow-tooltip>
         <template slot-scope="scope">
           {{ scope.row.marriageDesc }}
         </template>
