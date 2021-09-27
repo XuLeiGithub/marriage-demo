@@ -44,6 +44,13 @@
       <el-table-column label="创建日期" prop="insertTime" width="210" align="center"   >
       </el-table-column>
       <el-table-column label="签名时间" prop="updateTime" width="210" align="center"   >
+        <template slot-scope="scope">
+          <div v-if ="scope.row.marriageStatus== '01' || scope.row.marriageStatus== '02'">
+            {{ scope.row.updateTime }}
+          </div>
+          
+        </template>
+        
       </el-table-column>
       <el-table-column
         align="center"
