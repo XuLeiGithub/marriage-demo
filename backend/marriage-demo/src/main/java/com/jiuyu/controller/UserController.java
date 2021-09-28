@@ -60,5 +60,14 @@ public class UserController {
                 .collect(Collectors.toList());
         return R.ok(result);
     }
+    @GetMapping("/witness/list")
+    public R queryWitnessList(){
+    	List<UserInfoEntity> list = userInfoService.list();
+        List<UserInfoEntity> result = list.stream()
+                .filter(item -> item.getMarriageStatus().equals(
+                        MarriageStatusEnum.NEW_USER.getCode()))
+                .collect(Collectors.toList());
+        return R.ok(result);
+    }
 
 }
