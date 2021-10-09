@@ -392,7 +392,8 @@ cat MarriageEvidence.sol
 
 #### 3 WeBASE应用接入
 点击“应用管理”，若该案例已集成在WeBASE，则选择模板，在注册信息里面可获得WeBASE-Node-Manager的 `IP,Port,appKey,appSecret` 相关信息，记录这些信息，在下文的的application.properties配置中会用到
-![image](https://user-images.githubusercontent.com/85043867/136653281-064d765d-1ca6-48e0-8327-2b23d2f3a371.png)
+![image](https://user-images.githubusercontent.com/11324122/136654000-fbf3d389-2d88-460e-b6a6-5586fe83780d.png)
+
 
 #### 4 修改application.properties文件
 
@@ -572,7 +573,8 @@ WeBASE管理平台：http://supplychain.icoding721.com:5000/  		账密：**admin
 我们可以登录WeBASE 管理平台获取应用接入的配置信息
 
 点击“应用管理”，若该案例已集成在WeBASE，则选择模板，在注册信息里面可获得IP,Port,appKey,appSecret 相关信息，拿到这些信息会放到java配置文件本案例中的application.properties
-![image](https://user-images.githubusercontent.com/85043867/136653471-6acd28ed-da2c-4e82-bd0f-9b6ce2858012.png)
+![image](https://user-images.githubusercontent.com/11324122/136654042-5d1f15d4-ca08-4098-bd64-4099cc11691e.png)
+
 
 在配置了上述信息后，只要启动本案例的前后端服务，即完成了供应链服务接入WeBASE的操作，在WeBASE的“应用管理”中访问本案例的管理页面
 
