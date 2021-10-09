@@ -29,16 +29,18 @@ FISCO BCOS Block Chain Marry System created by Shanghai JiuYu Software Systems C
 
 ###  3.1 系统功能
 
-<img src="/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009165018948.png" alt="image-20211009165018948"  />
+![image](https://user-images.githubusercontent.com/85043867/136653002-48adebd0-5165-4331-bc02-015c951e2c4c.png)
+
+
 
 ###  3.2 具体业务层
 
   #### 新建证书流程图
-<img src="/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009170652311.png" alt="image-20211009170652311" style="zoom:50%;" />
+![image](https://user-images.githubusercontent.com/85043867/136653037-4cae4a64-cc96-4874-ad1d-e34934981eaa.png)
 
   #### 用户签名流程图
 
-<img src="/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009171059788.png" alt="image-20211009171059788" style="zoom:50%;" />
+![image](https://user-images.githubusercontent.com/85043867/136653063-bef8f221-c924-4275-bb5c-9f3756b3828f.png)
 
 
 
@@ -46,7 +48,7 @@ FISCO BCOS Block Chain Marry System created by Shanghai JiuYu Software Systems C
 
 ### 4.1 上传合约
 
-![image-20211009154821127](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009154821127.png)
+![image](https://user-images.githubusercontent.com/85043867/136653111-088e5c1c-292a-49b1-9ff9-9241f243c212.png)
 
 合约源码：MarriageEvidence.sol
 
@@ -175,13 +177,13 @@ contract MarriageEvidence{
 
 ### 4.2 编译合约
 
-![image-20211009154852088](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009154852088.png)
+![image](https://user-images.githubusercontent.com/85043867/136653141-f2d2c51e-a5ef-4cb2-961d-9dd3c1f4259a.png)
 
 
 
 ### 4.3 部署合约
 
-![image-20211009155429814](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009155429814.png)
+![image](https://user-images.githubusercontent.com/85043867/136653150-54b06d7a-8384-4ee3-8bdd-4cbb11080a6f.png)
 
 
 
@@ -189,22 +191,21 @@ contract MarriageEvidence{
 
 选择节点、用户及需要导出的合约
 
-![image-20211009155548087](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009155548087.png)
+![image](https://user-images.githubusercontent.com/85043867/136653193-00bdc546-419a-42be-a893-c3c73eaac0a1.png)
 
-![image-20211009155704129](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009155704129.png)
+![image](https://user-images.githubusercontent.com/85043867/136653201-218102bb-3f41-4490-83d7-6470bbf1bd33.png)
 
 ### 4.5 查看目录结构
 
 - mian目录下存放执行代码
 - conf目录下存放节点证书配置
 
-![image-20211009160231999](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009160231999.png)
-
+![image](https://user-images.githubusercontent.com/85043867/136653218-c40a766a-bbbe-49ed-97fe-9698b3cb47ac.png)
 
 
 ### 4.6 将Gradle项目转为Maven项目
 
-![image-20211009160539654](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009160539654.png)
+![image](https://user-images.githubusercontent.com/85043867/136653234-31fef408-aaf2-4c76-b79e-14c2d4ad62b2.png)
 
 ### 4.7 导入Maven依赖 
 
@@ -627,7 +628,7 @@ cat MarriageEvidence.sol
 
 #### 3 WeBASE应用接入
 点击“应用管理”，若该案例已集成在WeBASE，则选择模板，在注册信息里面可获得WeBASE-Node-Manager的 `IP,Port,appKey,appSecret` 相关信息，记录这些信息，在下文的的application.properties配置中会用到
-![image-20211009143900484](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009143900484.png)
+![image](https://user-images.githubusercontent.com/85043867/136653281-064d765d-1ca6-48e0-8327-2b23d2f3a371.png)
 
 #### 4 修改application.properties文件
 
@@ -742,35 +743,35 @@ WeBASE管理平台：http://supplychain.icoding721.com:5000/  		账密：**admin
 
 演示登记结婚及签名过程
 #### 6.1 进入首页
-![image-20211009145150630](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009145150630.png)
+![image](https://user-images.githubusercontent.com/85043867/136653375-fdc54f99-7e5e-4ccc-bb69-6a16caf00959.png)
 
 #### 6.2 管理员登录
-![image-20211009145331040](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009145331040.png)
+![image](https://user-images.githubusercontent.com/85043867/136653390-3508bfe3-5e6b-4b80-88b2-ecb5f0c14bbb.png)
 
 
 #### 6.3 新建用户并添加用户信息
-![image-20211009145838433](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009145838433.png)
+![image](https://user-images.githubusercontent.com/85043867/136653396-31fe8490-9edb-448d-9d29-ddbf96a7f119.png)
 
 注：需要添加男方、女方、证婚人三方用户信息
 
 #### 6.4 新建证书
 在证书列表中，点击新建证书
 
-![image-20211009153009814](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009153009814.png)
+![image](https://user-images.githubusercontent.com/85043867/136653404-76b02168-da92-445f-b8d4-7f2e52172a4f.png)
 
 在列表中，选择男方、女方及证婚人，点击提交
 
-![image-20211009161644039](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009161644039.png)
+![image](https://user-images.githubusercontent.com/85043867/136653413-3cba1d6a-4bca-426c-b39d-6975f87938d8.png)
 
 注：提交后证书状态为草稿状态，需各方完成签名后，就改为已确认状态。
 
-![image-20211009152401291](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009152401291.png)
+![image](https://user-images.githubusercontent.com/85043867/136653424-61d62c8e-c652-47ee-b4fe-e7e75cd6674d.png)
 
 #### 6.5 用户签名
 
 在用户信息列表中找到需要签名的用户，点击签名操作，签名成功返回交易Hash
 
-![image-20211009152423588](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009152423588.png)
+![image](https://user-images.githubusercontent.com/85043867/136653432-0eb4bc82-c642-4f4f-ab66-d7394e073403.png)
 
 注：男方、女方、证婚人都需完成签名
 
@@ -778,10 +779,10 @@ WeBASE管理平台：http://supplychain.icoding721.com:5000/  		账密：**admin
 
 在证书列表中，可以查看证书详情及签名状态
 
-![image-20211009172436825](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009172436825.png)
+![image](https://user-images.githubusercontent.com/85043867/136653449-94e0d962-7006-4119-8e11-94c7c6272273.png)
 
 #### 6.7 查看WeBASE管理平台交易情况
-![image-20211009152824638](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009152824638.png)
+![image](https://user-images.githubusercontent.com/85043867/136653454-c5a29936-29b5-4f2b-8b43-0d8a27e9f89e.png)
 
 
 
@@ -807,7 +808,7 @@ WeBASE管理平台：http://supplychain.icoding721.com:5000/  		账密：**admin
 我们可以登录WeBASE 管理平台获取应用接入的配置信息
 
 点击“应用管理”，若该案例已集成在WeBASE，则选择模板，在注册信息里面可获得IP,Port,appKey,appSecret 相关信息，拿到这些信息会放到java配置文件本案例中的application.properties
-![image-20211009153317943](/Users/mr.cheng/Library/Application Support/typora-user-images/image-20211009153317943.png)
+![image](https://user-images.githubusercontent.com/85043867/136653471-6acd28ed-da2c-4e82-bd0f-9b6ce2858012.png)
 
 在配置了上述信息后，只要启动本案例的前后端服务，即完成了供应链服务接入WeBASE的操作，在WeBASE的“应用管理”中访问本案例的管理页面
 
