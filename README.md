@@ -375,7 +375,7 @@ npm run dev
 ```Bash
 cd backend/marriage-demo/src/main/resources/db
 # 通过mysql -e命令执行.sql脚本，以root用户，db名为marriage_demo为例
-mysql -uroot -p  -D supplychain -e "source ./marriage_demo.sql"
+mysql -uroot -p  -D marriage -e "source ./marriage_demo.sql"
 ```
 #### 2 部署MarriageEvidence合约
 
@@ -439,6 +439,7 @@ spring.datasource.hikari.idle-timeout=600000
 spring.datasource.hikari.pool-name=DateSourceHikariCP
 spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-test-query=SELECT 1
+
 # webase-node-mgr的IP与端口
 webase.node.mgr.url=http://127.0.0.1:5001
 # webase管理台-应用管理，创建自定义应用生成的appKey
