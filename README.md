@@ -13,7 +13,7 @@ FISCO BCOS Block Chain Marry System created by Shanghai JiuYu Software Systems C
 
 ## 1. 设计理念
 
-基于区块链的登记结婚系统是对结合Character角色合约与Evidence存证合约打造结婚证书的实现，
+基于区块链的登记结婚系统是对结合Character角色合约与Evidence存证合约打造结婚证书的实现，利用WeBASE管理平台将合约导出为Java项目。
 
 
 
